@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kriyan — Expense Manager</title>
+  <meta name="description" content="Build better spending habits. Get out of debt. Start investing. Kriyan Expense Manager for Android." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a1a2e;
+      --navy-light: #22223a;
+      --yellow: #ffd93d;
+      --green: #6bcb77;
+      --red: #ff6b6b;
+      --text: #e8e8f0;
+      --muted: #9999bb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      background: rgba(26, 26, 46, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 217, 61, 0.1);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo img { height: 36px; }
+    .nav-logo span { font-size: 1.2rem; font-weight: 700; color: #fff; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a:hover { color: var(--yellow); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .btn {
+      background: var(--yellow);
+      color: var(--navy);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; color: var(--navy); }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      padding: 80px 40px 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 217, 61, 0.12);
+      color: var(--yellow);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 217, 61, 0.3);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .btn-outline {
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    .hero-image { flex: 0 0 auto; }
+    .hero-image img {
+      width: 260px;
+      border-radius: 32px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 2px rgba(255,217,61,0.3);
+    }
+
+    /* FEATURES */
+    .features {
+      background: var(--navy-light);
+      padding: 80px 40px;
+    }
+    .features-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      text-align: center;
+      color: var(--yellow);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 56px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(255,217,61,0.3); transform: translateY(-2px); }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* SCREENSHOTS */
+    .screenshots {
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .screenshots-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 0;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .screenshots-scroll img {
+      height: 480px;
+      border-radius: 24px;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,217,61,0.15);
+      scroll-snap-align: start;
+      flex-shrink: 0;
+    }
+
+    /* PRIVACY STRIP */
+    .privacy-strip {
+      background: rgba(107, 203, 119, 0.08);
+      border-top: 1px solid rgba(107, 203, 119, 0.15);
+      border-bottom: 1px solid rgba(107, 203, 119, 0.15);
+      padding: 40px;
+      text-align: center;
+    }
+    .privacy-strip h3 { font-size: 1.2rem; color: var(--green); margin-bottom: 8px; }
+    .privacy-strip p { color: var(--muted); font-size: 0.95rem; max-width: 560px; margin: 0 auto; }
+
+    /* DOWNLOAD */
+    .download {
+      padding: 80px 40px;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .download h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .download p { color: var(--muted); margin-bottom: 32px; }
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: border-color 0.2s;
+    }
+    .store-badge:hover { border-color: var(--yellow); }
+    .store-badge svg { width: 28px; height: 28px; fill: #fff; }
+    .store-badge-text { text-align: left; }
+    .store-badge-text small { display: block; font-size: 0.7rem; color: #aaa; }
+    .store-badge-text strong { font-size: 1rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-light);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer p { color: var(--muted); font-size: 0.85rem; }
+    footer a { color: var(--muted); text-decoration: none; font-size: 0.85rem; }
+    footer a:hover { color: var(--yellow); }
+    .footer-links { display: flex; gap: 24px; }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      text-align: center;
+      padding: 0 40px 40px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .hero { flex-direction: column; padding: 48px 20px 40px; text-align: center; }
+      .hero p { max-width: 100%; }
+      .hero-image img { width: 200px; }
+      .features { padding: 56px 20px; }
+      .screenshots { padding: 56px 20px; }
+      .download { padding: 56px 20px; }
+      footer { flex-direction: column; text-align: center; padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="assets/logo.png" alt="Kriyan logo" />
+    <span>Kriyan</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a class="btn" href="#download">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Expense Manager</div>
+    <h1>Spend smarter.<br /><span>Build wealth.</span></h1>
+    <p>Kriyan helps young professionals build the habit of spending on the right things — so you can get out of debt and start investing.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#download">Get it on Android</a>
+      <a class="btn-outline" href="#features">See features</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="screenshots/Screenshot_20260509_202251.png" alt="Kriyan app screenshot" />
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <p class="section-label">Why Kriyan</p>
+    <h2 class="section-title">Everything you need to take control</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Budget Envelopes</h3>
+        <p>Split your income across Recurring, Needs, Luxuries, and Investments so every rupee has a purpose.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Spending Nudges</h3>
+        <p>Get alerted when you're approaching or exceeding a budget category — before it's too late to course-correct.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Insights</h3>
+        <p>See weekly spending summaries and patterns at a glance to understand where your money actually goes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI Guidance <span style="font-size:0.7rem;color:var(--yellow);font-weight:400">Coming soon</span></h3>
+        <p>Educational suggestions on how to improve your spending habits and work towards better financial outcomes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Private</h3>
+        <p>All your data stays on your device. No account required, no cloud sync, nothing uploaded to any server.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>No Clutter</h3>
+        <p>Clean, fast, and focused. No ads, no upsells, no unnecessary complexity. Just you and your money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="screenshots" id="screenshots">
+  <p class="section-label">Screenshots</p>
+  <h2 class="section-title">See it in action</h2>
+  <div class="screenshots-scroll">
+      <img src="screenshots/Screenshot_20260509_202251.png" alt="Dashboard" />
+      <img src="screenshots/Screenshot_20260509_195427.png" alt="Onboarding" />
+      <img src="screenshots/Screenshot_20260509_201926.png" alt="Add Expense" />
+      <img src="screenshots/Screenshot_20260509_202331.png" alt="Transactions" />
+      <img src="screenshots/Screenshot_20260509_202407.png" alt="Categories" />
+  </div>
+</section>
+
+<!-- PRIVACY STRIP -->
+<div class="privacy-strip">
+  <h3>🔒 Your data never leaves your device</h3>
+  <p>Kriyan stores all your expense data locally using your phone's storage. We don't collect personal information, don't have a server, and don't sell your data.</p>
+</div>
+
+<!-- DOWNLOAD -->
+<section class="download" id="download">
+  <h2>Download Kriyan</h2>
+  <p>Available now on Android. iOS coming soon.</p>
+  <a class="store-badge" href="#">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.18 23.76c.3.17.64.24.99.2l12.6-12.6-3.33-3.33L3.18 23.76zm16.4-13.2c.28-.25.42-.6.42-.96s-.14-.7-.42-.95L17.7 7.4l-3.58 3.6 1.82 1.82 3.64-2.26zM.36 1.18C.13 1.46 0 1.83 0 2.27v19.46c0 .44.13.81.36 1.09l.06.06L11.04 12 .42 1.12l-.06.06zM17.7 16.6l-1.82-1.82-12.6 12.6c.35.04.7-.03.99-.2l13.43-10.58z"/>
+    </svg>
+    <div class="store-badge-text">
+      <small>Get it on</small>
+      <strong>Google Play</strong>
+    </div>
+  </a>
+</section>
+
+<p class="disclaimer">Kriyan does not provide financial advice. All insights and suggestions are educational and informational only. Past spending patterns are not indicative of future financial outcomes.</p>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Kriyan. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="mailto:shubham.kriyan@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
