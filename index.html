@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kriyan — Expense Manager</title>
   <meta name="description" content="Build better spending habits. Get out of debt. Start investing. Kriyan Expense Manager for Android." />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMJ82315G4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EMJ82315G4');
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -267,7 +275,7 @@
     <a href="#features">Features</a>
     <a href="#screenshots">Screenshots</a>
     <a href="privacy-policy.html">Privacy</a>
-    <a class="btn" href="#download">Download</a>
+    <a class="btn" href="#download" onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'nav_cta'})">Download</a>
   </div>
 </nav>
 
@@ -278,7 +286,7 @@
     <h1>Spend smarter.<br /><span>Build wealth.</span></h1>
     <p>Kriyan helps young professionals build the habit of spending on the right things — so you can get out of debt and start investing.</p>
     <div class="hero-actions">
-      <a class="btn" href="#download">Get it on Android</a>
+      <a class="btn" href="#download" onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'hero_cta'})">Get it on Android</a>
       <a class="btn-outline" href="#features">See features</a>
     </div>
   </div>
@@ -350,7 +358,7 @@
 <section class="download" id="download">
   <h2>Download Kriyan</h2>
   <p>Available now on Android. iOS coming soon.</p>
-  <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.kriyanaiapp">
+  <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.kriyanaiapp" onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'google_play'})">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M3.18 23.76c.3.17.64.24.99.2l12.6-12.6-3.33-3.33L3.18 23.76zm16.4-13.2c.28-.25.42-.6.42-.96s-.14-.7-.42-.95L17.7 7.4l-3.58 3.6 1.82 1.82 3.64-2.26zM.36 1.18C.13 1.46 0 1.83 0 2.27v19.46c0 .44.13.81.36 1.09l.06.06L11.04 12 .42 1.12l-.06.06zM17.7 16.6l-1.82-1.82-12.6 12.6c.35.04.7-.03.99-.2l13.43-10.58z"/>
     </svg>
