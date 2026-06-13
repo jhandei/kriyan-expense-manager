@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download Kriyan — Expense Manager</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kriyan.app/download" />
+  <meta property="og:title" content="Download Kriyan — Expense Manager" />
+  <meta property="og:description" content="Build better spending habits. Budget envelopes, spending nudges, and 100% private. Available on Android and iOS." />
+  <meta property="og:image" content="https://kriyan.app/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Download Kriyan — Expense Manager" />
+  <meta name="twitter:description" content="Build better spending habits. Budget envelopes, spending nudges, and 100% private. Available on Android and iOS." />
+  <meta name="twitter:image" content="https://kriyan.app/assets/og-image.png" />
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMJ82315G4"></script>
   <script>
@@ -13,10 +29,10 @@
     gtag('config', 'G-EMJ82315G4');
   </script>
   <script>
-    var ANDROID_URL = "https://play.google.com/store/apps/details?id=com.kriyanaiapp";
-    var IOS_URL = "https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972";
+    const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.kriyanaiapp";
+    const IOS_URL = "https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972";
 
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
     if (/android/i.test(ua)) {
       gtag('event', 'download_redirect', { event_category: 'engagement', event_label: 'google_play' });
       window.location.replace(ANDROID_URL);
@@ -24,48 +40,126 @@
       gtag('event', 'download_redirect', { event_category: 'engagement', event_label: 'app_store' });
       window.location.replace(IOS_URL);
     }
-    // Desktop falls through to the page body
   </script>
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f1e;
+      color: #e8e8f0;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     .container {
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
     }
+
     .logo {
       width: 96px;
       height: 96px;
       border-radius: 22px;
       margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
-    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
-    p { color: #aaa; margin-bottom: 2rem; font-size: 1rem; }
-    .badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .badges a img { height: 52px; }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: #8888aa;
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .badges {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      padding: 14px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: border-color 0.2s, transform 0.2s;
+      min-width: 180px;
+    }
+
+    .store-badge:hover {
+      border-color: #ffd93d;
+      transform: translateY(-2px);
+    }
+
+    .store-badge svg {
+      width: 26px;
+      height: 26px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+
+    .store-badge-text {
+      text-align: left;
+    }
+
+    .store-badge-text small {
+      display: block;
+      font-size: 0.68rem;
+      color: #888;
+    }
+
+    .store-badge-text strong {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      .badges { flex-direction: column; align-items: center; }
+      .store-badge { width: 100%; max-width: 280px; justify-content: center; }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="assets/icon.png" alt="Kriyan" class="logo" onerror="this.style.display='none'" />
+    <img src="../assets/logo_white_with_transparent_background.png" alt="Kriyan" class="logo" onerror="this.style.display='none'" />
     <h1>Download Kriyan</h1>
     <p>Build better spending habits. Available on Android and iOS.</p>
     <div class="badges">
-      <a href="https://play.google.com/store/apps/details?id=com.kriyanaiapp"
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.kriyanaiapp"
          onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'google_play'})">
-        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.18 23.76c.3.17.64.24.99.2l12.6-12.6-3.33-3.33L3.18 23.76zm16.4-13.2c.28-.25.42-.6.42-.96s-.14-.7-.42-.95L17.7 7.4l-3.58 3.6 1.82 1.82 3.64-2.26zM.36 1.18C.13 1.46 0 1.83 0 2.27v19.46c0 .44.13.81.36 1.09l.06.06L11.04 12 .42 1.12l-.06.06zM17.7 16.6l-1.82-1.82-12.6 12.6c.35.04.7-.03.99-.2l13.43-10.58z"/>
+        </svg>
+        <div class="store-badge-text">
+          <small>Get it on</small>
+          <strong>Google Play</strong>
+        </div>
       </a>
-      <a href="https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972"
+      <a class="store-badge" href="https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972"
          onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'app_store'})">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+        </svg>
+        <div class="store-badge-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
       </a>
     </div>
   </div>
