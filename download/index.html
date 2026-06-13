@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Kriyan — Expense Manager</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMJ82315G4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EMJ82315G4');
+  </script>
+  <script>
+    var ANDROID_URL = "https://play.google.com/store/apps/details?id=com.kriyanaiapp";
+    var IOS_URL = "https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972";
+
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/android/i.test(ua)) {
+      gtag('event', 'download_redirect', { event_category: 'engagement', event_label: 'google_play' });
+      window.location.replace(ANDROID_URL);
+    } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+      gtag('event', 'download_redirect', { event_category: 'engagement', event_label: 'app_store' });
+      window.location.replace(IOS_URL);
+    }
+    // Desktop falls through to the page body
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      margin-bottom: 1.5rem;
+    }
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    p { color: #aaa; margin-bottom: 2rem; font-size: 1rem; }
+    .badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .badges a img { height: 52px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="assets/icon.png" alt="Kriyan" class="logo" onerror="this.style.display='none'" />
+    <h1>Download Kriyan</h1>
+    <p>Build better spending habits. Available on Android and iOS.</p>
+    <div class="badges">
+      <a href="https://play.google.com/store/apps/details?id=com.kriyanaiapp"
+         onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'google_play'})">
+        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" />
+      </a>
+      <a href="https://apps.apple.com/in/app/kriyan-expense-manager/id6774896972"
+         onclick="gtag('event', 'download_click', {event_category: 'engagement', event_label: 'app_store'})">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+      </a>
+    </div>
+  </div>
+</body>
+</html>
